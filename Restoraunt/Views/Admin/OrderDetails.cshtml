@@ -1,0 +1,85 @@
+﻿@model Restoraunt.Models.OrderViewModel
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Детали заказа";
+
+    string statusText = Model.State == Restoraunt.Domain.Enums.Order.UState.Done ? "Завершён" :
+                        Model.State == Restoraunt.Domain.Enums.Order.UState.Waiting ? "В ожидании" :
+                        "Отменён";
+
+    string badgeClass = Model.State == Restoraunt.Domain.Enums.Order.UState.Done ? "bg-success" :
+                        Model.State == Restoraunt.Domain.Enums.Order.UState.Waiting ? "bg-warning text-dark" :
+                        "bg-danger";
+}
+
+<div id="content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 text-gray-800">Заказ #@Model.Id</h1>
+        <a href="@Url.Action("Orders", "Admin")" class="btn btn-secondary">Назад</a>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6>Дата создания</h6>
+                    <p>@Model.Created.ToString("yyyy-MM-dd")</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6>Сумма</h6>
+                    <p>₽@Model.Total</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6>Статус</h6>
+                    <span class="badge @badgeClass">@statusText</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header py-3">
+            <h6 class="m-0 fw-bold text-primary">Товары в заказе</h6>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Название</th>
+                            <th>Цена</th>
+                            <th>Количество</th>
+                            <th>Итого</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var p in Model.Products)
+                        {
+                            <tr>
+                                <td>@p.Title</td>
+                                <td>₽@p.Price</td>
+                                <td>@p.Quantity</td>
+                                <td>₽@(p.Price * p.Quantity)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card h6 {
+        font-weight: 600;
+    }
+</style>

@@ -1,0 +1,101 @@
+@using Restoraunt.BusinessLogic.BL
+@{
+    var active = (string)(ViewBag.ActivePage ?? "");
+}
+
+<header style="background-color:#8B0000;">
+    <nav class="navbar navbar-expand-lg navbar-dark container py-3 py-lg-4">
+        @Html.ActionLink("Restoraunt", "Index", "Home",
+                         routeValues: new { area = "" },        
+                         htmlAttributes: new { @class = "navbar-brand fw-bold fs-4" })
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    @Html.ActionLink("Home", "Index", "Home",
+                        new { area = "" },
+                        new { @class = $"nav-link {(active == "Index" ? "active" : "")}" })
+                </li>
+
+                <li class="nav-item">
+                    @Html.ActionLink("Why us", "Why", "Home",
+                        new { area = "" },
+                        new { @class = $"nav-link {(active == "Why" ? "active" : "")}" })
+                </li>
+
+                <li class="nav-item">
+                    @Html.ActionLink("Menu", "Menu", "Catalog",
+                        new { area = "" },
+                        new { @class = $"nav-link {(active == "Menu" ? "active" : "")}" })
+                </li>
+
+                <li class="nav-item">
+                    @Html.ActionLink("Orders", "Orders", "Catalog",
+                        new { area = "" },
+                        new { @class = $"nav-link {(active == "Orders" ? "active" : "")}" })
+                </li>
+
+                <li class="nav-item">
+                    @Html.ActionLink("Waiters", "Waiters", "WaiterID",
+                        new { area = "" },
+                        new { @class = $"nav-link {(active == "Waiters" ? "active" : "")}" })
+                </li>
+
+                <li class="nav-item">
+                    @Html.ActionLink("Contact", "Contact", "Home",
+                        new { area = "" },
+                        new { @class = $"nav-link {(active == "Contact" ? "active" : "")}" })
+                </li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Add Product", "CreateProduct", "Admin",
+                            new { area = "" },
+                            new { @class = "nav-link text-warning fw-semibold" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Admin Panel", "Index", "Admin",
+                            new { area = "" },
+                            new { @class = "nav-link text-warning fw-semibold" })
+                    </li>
+                }
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Login", "Login", "Login",
+                            new { area = "" },
+                            new { @class = $"nav-link {(active == "Login" ? "active" : "")}" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Registration", "Register", "Registration",
+                            new { area = "" },
+                            new { @class = $"nav-link {(active == "Register" ? "active" : "")}" })
+                    </li>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Logout", "Logout", "Account",
+                            new { area = "" },
+                            new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink(User.Identity.Name, "User", "Account",
+                            new { area = "" },
+                            new { @class = $"nav-link {(active == "User" ? "active" : "")}" })
+                    </li>
+                }
+            </ul>
+            @if (User.Identity.IsAuthenticated)
+            {
+                @Html.Partial("_CartBadge")
+            }
+        </div>
+    </nav>
+</header>

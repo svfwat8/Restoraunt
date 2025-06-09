@@ -1,0 +1,68 @@
+﻿@model Restoraunt.Models.ContactViewModel
+@{
+    ViewBag.Title = "Связаться с нами - Paradise of Taste";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="min-vh-100 bg-gradient-to-br from-dark-purple via-dark-red to-deep-purple text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            
+
+            <!-- Form Section -->
+            <div class="col-md-6">
+                <div class="bg-dark p-5 rounded-4 shadow">
+                    <h2 class="text-danger mb-4">Свяжитесь с нами</h2>
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["Success"]</div>
+                    }
+
+                    @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Ваше имя" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", type = "email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "Телефон" })
+                            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Сообщение", rows = 4 })
+                            @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-danger btn-lg rounded-pill">Отправить</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-gradient-to-br {
+        background: linear-gradient(to bottom right, #1a0026, #4b002c, #2c003e);
+    }
+
+    .text-purple {
+        color: #9933cc;
+    }
+</style>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

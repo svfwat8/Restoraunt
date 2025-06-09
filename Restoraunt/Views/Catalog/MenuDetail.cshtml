@@ -1,0 +1,186 @@
+﻿@{
+    ViewBag.Title = "MenuDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 id="program-title">Program Details</h2>
+        </div>
+
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img id="program-image" src="images/program-1.jpg" alt="Program Image" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6">
+                <h3 id="program-subtitle">Program Overview</h3>
+                <p id="program-description">Loading program details...</p>
+
+                <div class="mt-3">
+                    <h5>Suitable For:</h5>
+                    <p id="program-suitable">All taste levels</p>
+                </div>
+
+                <div class="mt-3">
+                    <h5>Duration:</h5>
+                    <p id="program-duration">8-12 weeks</p>
+                </div>
+
+                <div class="mt-3">
+                    <h5>Led By:</h5>
+                    <p id="program-waiter">Expert waiters</p>
+                </div>
+
+                <div class="mt-4">
+                    <a href="#" class="btn btn-primary mr-2">ENROLL NOW</a>
+                    <a href="@Url.Action("Menu", "Catalog")" class="btn btn-outline-secondary">BACK TO MENU</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <ul class="nav nav-tabs" id="programTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab">Weekly Schedule</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="benefits-tab" data-toggle="tab" href="#benefits" role="tab">Benefits</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="equipment-tab" data-toggle="tab" href="#equipment" role="tab">Equipment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="testimonials-tab" data-toggle="tab" href="#testimonials" role="tab">Testimonials</a>
+                </li>
+            </ul>
+
+            <div class="tab-content border p-4 mt-3" id="programTabContent">
+                <div class="tab-pane fade show active" id="schedule" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Focus</th>
+                                    <th>Duration</th>
+                                    <th>Intensity</th>
+                                </tr>
+                            </thead>
+                            <tbody id="program-schedule">
+                                <tr><td>Monday</td><td>Upper Body Strength</td><td>45-60 minutes</td><td>Moderate-High</td></tr>
+                                <tr><td>Tuesday</td><td>Cardio & Core</td><td>30-45 minutes</td><td>Moderate</td></tr>
+                                <tr><td>Wednesday</td><td>Lower Body Strength</td><td>45-60 minutes</td><td>Moderate-High</td></tr>
+                                <tr><td>Thursday</td><td>Rest or Light Activity</td><td>15-30 minutes</td><td>Low</td></tr>
+                                <tr><td>Friday</td><td>Full Body Workout</td><td>45-60 minutes</td><td>High</td></tr>
+                                <tr><td>Saturday</td><td>HIIT or Sports</td><td>30-45 minutes</td><td>High</td></tr>
+                                <tr><td>Sunday</td><td>Rest Day</td><td>-</td><td>-</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="benefits" role="tabpanel">
+                    <ul id="program-benefits" class="list-unstyled pl-3">
+                        <li>Increased muscle strength and endurance</li>
+                        <li>Improved cardiovascular health</li>
+                        <li>Enhanced metabolism and calorie burning</li>
+                        <li>Better posture and functional movement</li>
+                        <li>Reduced risk of injury</li>
+                        <li>Improved body composition</li>
+                        <li>Increased energy levels and mood</li>
+                        <li>Better sleep quality</li>
+                    </ul>
+                </div>
+
+                <div class="tab-pane fade" id="equipment" role="tabpanel">
+                    <div class="row" id="program-equipment">
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 text-center">
+                                <img src="images/equipment-1.jpg" class="card-img-top" alt="Dumbbells">
+                                <div class="card-body">
+                                    <h5 class="card-title">Free Weights</h5>
+                                    <p class="card-text">Dumbbells, barbells, and weight plates</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 text-center">
+                                <img src="images/equipment-2.jpg" class="card-img-top" alt="Machines">
+                                <div class="card-body">
+                                    <h5 class="card-title">Resistance Machines</h5>
+                                    <p class="card-text">Cable machines, smith machine, and more</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 text-center">
+                                <img src="images/equipment-3.jpg" class="card-img-top" alt="Cardio">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cardio Equipment</h5>
+                                    <p class="card-text">Treadmills, bikes, rowing machines, and ellipticals</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="testimonials" role="tabpanel">
+                    <div class="row" id="program-testimonials">
+                        <div class="col-md-6 mb-4">
+                            <div class="border p-4 rounded shadow-sm h-100">
+                                <p>"This program transformed my taste journey. I've gained strength I never thought possible and feel amazing every day."</p>
+                                <h6 class="mt-3 mb-0">Sarah J.</h6>
+                                <small class="text-muted">Program Member - 6 months</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="border p-4 rounded shadow-sm h-100">
+                                <p>"The waiter are exceptional and the program structure makes it easy to follow even with my busy schedule. Highly recommend!"</p>
+                                <h6 class="mt-3 mb-0">Michael T.</h6>
+                                <small class="text-muted">Program Member - 3 months</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Menu Section -->
+        <div class="text-center mb-4">
+            <h2>Related Menu</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="images/program-2.jpg" class="card-img-top" alt="French Cuisine">
+                    <div class="card-body">
+                        <h5 class="card-title">FRENCH CUISINE</h5>
+                        <p class="card-text">French cuisine is sophistication, exquisite sauces and culinary art in every detail.</p>
+                        <a href="@Url.Action("MenuDetail", "Catalog")" class="btn btn-outline-primary mt-2">VIEW DETAILS</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="images/program-3.jpg" class="card-img-top" alt="Flexibility & Yoga">
+                    <div class="card-body">
+                        <h5 class="card-title">FLEXIBILITY & YOGA</h5>
+                        <p class="card-text">Increase mobility, reduce stress, and improve balance with our flexibility and yoga waiting program.</p>
+                        <a href="@Url.Action("MenuDetail", "Catalog")" class="btn btn-outline-primary mt-2">VIEW DETAILS</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="images/program-4.jpg" class="card-img-top" alt="HIIT">
+                    <div class="card-body">
+                        <h5 class="card-title">HIIT WORKOUTS</h5>
+                        <p class="card-text">Maximize fat loss and improve conditioning with our high-intensity interval waiting program.</p>
+                        <a href="@Url.Action("MenuDetail", "Catalog")" class="btn btn-outline-primary mt-2">VIEW DETAILS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

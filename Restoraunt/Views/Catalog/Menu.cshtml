@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="hero_area">
+    <!-- Slider section -->
+    <section class="slider_section position-relative text-white bg-dark-gradient">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container py-5">
+                        <div class="col-lg-10 col-md-11 mx-auto text-center">
+                            <div class="detail-box">
+                                <h3 class="fw-light">VIP</h3>
+                                <h2 class="fw-bold text-warning">Cuisines</h2>
+                                <h1 class="display-4">Menu</h1>
+                                <p class="lead text-light">We hope that you will enjoy our cuisine.</p>
+                                <a href="#Menu" class="btn btn-outline-warning btn-lg mt-3 rounded-pill px-4">View Menu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="us_section layout_padding" id="Menu">
+    <div class="container">
+        <div class="heading_container text-center mb-5">
+            <h2 class="text-uppercase text-white">Our Menu</h2>
+        </div>
+        <div class="row">
+            @{
+                var cuisines = new[]
+                {
+                    new { Title = "Japanese Cuisine", Image = "images/program-1.jpg", Desc = "Japanese cuisine is a harmony of taste, freshness and aesthetics in every dish." },
+                    new { Title = "Moldavian Cuisine", Image = "images/program-2.jpg", Desc = "Moldovan cuisine is homely warmth, aromatic dishes and a generous combination of Balkan and Eastern European flavours." },
+                    new { Title = "German Cuisine", Image = "images/program-3.jpg", Desc = "German cuisine is hearty dishes, rich flavors and rich traditions." },
+                    new { Title = "Mexican Cuisine", Image = "images/program-4.jpg", Desc = "Mexican cuisine is an explosion of flavors, vibrant spices and energy in every dish." },
+                    new { Title = "Spanish Cuisine", Image = "images/program-5.jpg", Desc = "Spanish cuisine is passion, sun and richness of tradition on every plate." },
+                    new { Title = "Italian Cuisine", Image = "images/program-6.jpg", Desc = "Italian cuisine is comfort, aroma and simple dishes prepared with love." }
+                };
+            }
+
+            @foreach (var cuisine in cuisines)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="box shadow-sm rounded bg-white h-100 d-flex flex-column">
+                        <div class="img-box">
+                            <img src="@Url.Content("~/" + cuisine.Image)" class="img-fluid rounded-top" alt="@cuisine.Title" />
+                        </div>
+                        <div class="detail-box p-3 d-flex flex-column flex-grow-1">
+                            <h5 class="text-dark text-uppercase">@cuisine.Title</h5>
+                            <p class="flex-grow-1">@cuisine.Desc</p>
+                            <div class="btn-box mt-3">
+                                <a href="@Url.Action("CustomerDetail", "Catalog")" class="btn btn-outline-primary w-100 rounded-pill">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .bg-dark-gradient {
+        background: linear-gradient(135deg, #1a0026, #4b002c, #2c003e);
+    }
+
+    .heading_container h2 {
+        font-weight: 600;
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+    }
+
+    .box {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+</style>

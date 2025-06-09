@@ -1,0 +1,33 @@
+@model Restoraunt.Models.EditUserViewModel
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Удалить пользователя";
+}
+
+<section class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-danger shadow-sm rounded-3">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Удалить пользователя</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger">
+                        Вы уверены, что хотите удалить пользователя: <strong>@Model.UserName</strong>?
+                    </div>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.Id)
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                            <a href="@Url.Action("Users")" class="btn btn-outline-secondary">Отмена</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

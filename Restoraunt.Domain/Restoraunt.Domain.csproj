@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C619B0A-4366-4615-9ED9-042C75CE2285}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IronCore.Domain</RootNamespace>
+    <AssemblyName>IronCore.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Cart\CartDbModel.cs" />
+    <Compile Include="Entities\Cart\CartDTO.cs" />
+    <Compile Include="Entities\WaiterID\WaiterIDDbModel.cs" />
+    <Compile Include="Entities\WaiterID\WaiterIDDTO.cs" />
+    <Compile Include="Entities\Contact\ContactDbModel.cs" />
+    <Compile Include="Entities\Contact\ContactDTO.cs" />
+    <Compile Include="Entities\Order\OrderDbModel.cs" />
+    <Compile Include="Entities\Order\OrderDTO.cs" />
+    <Compile Include="Entities\Product\ProductDbModel.cs" />
+    <Compile Include="Entities\Product\ProductDTO.cs" />
+    <Compile Include="Entities\User\Login\UserLoginData.cs" />
+    <Compile Include="Entities\User\Registration\UserRegistrationResult.cs" />
+    <Compile Include="Entities\User\UserDbModel.cs" />
+    <Compile Include="Entities\User\UserDTO.cs" />
+    <Compile Include="Entities\User\Login\UserLoginResult.cs" />
+    <Compile Include="Entities\User\Registration\UserRegistrationData.cs" />
+    <Compile Include="Enums\Order\UState.cs" />
+    <Compile Include="Enums\User\URole.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Restoraunt.Helpers\Restoraunt.Helpers.csproj">
+      <Project>{3b954f29-8a52-45c3-a3fe-a6a29ce82cf0}</Project>
+      <Name>Restoraunt.Helpers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Balance\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

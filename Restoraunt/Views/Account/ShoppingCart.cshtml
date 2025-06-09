@@ -1,0 +1,88 @@
+﻿@model Restoraunt.Models.CartViewModel
+@{
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="layout_padding">
+    <div class="container">
+        <div class="heading_container">
+            <h2>Корзина</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Ваши товары (@Model.Products.Count)</h5>
+                        <a href="@Url.Action("ClearCart", "Account")" class="btn btn-sm btn-outline-danger">Очистить корзину</a>
+                    </div>
+                    <div class="card-body p-0">
+                        @if (Model.Products.Count == 0)
+                        {
+                            <div class="p-4 text-center text-muted">
+                                Корзина пуста.
+                            </div>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.Products)
+                            {
+                                <div class="cart-item p-3 border-bottom">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-2 col-4">
+                                            <img src="@item.ImageUrl" alt="@item.Title" class="img-fluid rounded" style="background-color: #f1f1f1; padding: 10px;">
+                                        </div>
+                                        <div class="col-md-5 col-8">
+                                            <h6 class="mb-1">@item.Title</h6>
+                                            <p class="text-muted mb-0">@item.Description</p>
+                                        </div>
+                                        <div class="col-md-2 col-4 mt-3 mt-md-0">
+                                            <div class="input-group input-group-sm">
+                                                <div class="input-group-prepend">
+                                                    <a href="@Url.Action("DecrementQuantity", "Account", new { id = item.Id })" class="btn btn-outline-secondary" type="button">-</a>
+                                                </div>
+                                                <input type="text" class="form-control text-center" value="@item.Quantity" readonly>
+                                                <div class="input-group-append">
+                                                    <a href="@Url.Action("IncrementQuantity", "Account", new { id = item.Id })" class="btn btn-outline-secondary" type="button">+</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-4 mt-3 mt-md-0 text-right">
+                                            <p class="mb-0 font-weight-bold">@item.Price.ToString("C")</p>
+                                        </div>
+                                        <div class="col-md-1 col-4 mt-3 mt-md-0 text-right">
+                                            <a href="@Url.Action("RemoveFromCart", "Account", new { id = item.Id })" class="btn btn-sm btn-link text-danger">
+                                                <span>&times;</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Итого</h5>
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-0">Сумма</p>
+                            <p class="mb-0">@Model.Price.ToString("C")</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-0">Скидка</p>
+                            <p class="mb-0">@Model.Discount.ToString("C")</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-0"><strong>Всего к оплате</strong></p>
+                            <p class="mb-0"><strong>@Model.Total.ToString("C")</strong></p>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-block mt-3">Оформить заказ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
